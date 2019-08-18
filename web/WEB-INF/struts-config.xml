@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="userForm" type="com.jxau.bank.struts.actionForms.UserActionForm"></form-bean>
+        <form-bean name="depositWithdrawsForm" type="com.jxau.bank.struts.actionForms.depositWithdrawsActionForm"></form-bean>
+        <form-bean name="transferForm" type="com.jxau.bank.struts.actionForms.TransferActionForm"></form-bean>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/login"
+                name="userForm"
+                type="com.jxau.bank.struts.actions.LoginAction"
+                scope="request"
+                validate="false"
+        >
+            <forward name="success_user" path="/WEB-INF/index.jsp"/>
+            <forward name="success_admin" path="/WEB-INF/adminIndex.jsp"/>
+            <forward name="error" path="/login.jsp"/>
+        </action>
+
+        <action path="/register"
+                name="userForm"
+                type="com.jxau.bank.struts.actions.RegisterAction"
+                scope="request"
+                validate="false"
+        >
+            <forward name="success" path="/login.jsp"/>
+            <forward name="error" path="/register.jsp"/>
+        </action>
+
+        <action path="/inquiry"
+                type="com.jxau.bank.struts.actions.InquiryAction"
+        >
+            <forward name="inquiry" path="/getBalance.jsp"/>
+        </action>
+
+        <action path="/deposit"
+                name="depositWithdrawsForm"
+                type="com.jxau.bank.struts.actions.DepositAction"
+                scope="request"
+                validate="false"
+        >
+            <forward name="deposit" path="/deposit.jsp"/>
+        </action>
+
+        <action path="/withdraws"
+                name="depositWithdrawsForm"
+                type="com.jxau.bank.struts.actions.WithdrawsAction"
+                scope="request"
+                validate="false"
+        >
+            <forward name="withdraws_success" path="/withdraws.jsp"/>
+            <forward name="withdraws_error" path="/withdraws.jsp"/>
+        </action>
+
+        <action path="/transfer"
+                name="transferForm"
+                type="com.jxau.bank.struts.actions.TransferAction"
+                scope="request"
+                validate="false"
+        >
+            <forward name="transfer_success" path="/transfer.jsp"/>
+            <forward name="transfer_error" path="/transfer.jsp"/>
+        </action>
+
+        <action path="/log"
+                type="com.jxau.bank.struts.actions.LogAction"
+        >
+            <forward name="log" path="/log.jsp"/>
+        </action>
+
+        <action path="/adminCheckUsers"
+                type="com.jxau.bank.struts.actions.AdminCheckUsersAction"
+        >
+            <forward name="adminCheckUsers" path="/adminCheckUsers.jsp"/>
+        </action>
+
+        <action path="/freeze"
+                type="com.jxau.bank.struts.actions.FreezeAction"
+        >
+            <forward name="freeze" path="/adminCheckUsers.jsp"/>
+        </action>
+
+        <action path="/thaw"
+                type="com.jxau.bank.struts.actions.ThawAction"
+        >
+            <forward name="thaw" path="/adminCheckUsers.jsp"/>
+        </action>
+
+        <action path="/exit"
+                type="com.jxau.bank.struts.actions.ExitAction"
+        >
+            <forward name="success" path="/login.jsp"/>
+        </action>
+    </action-mappings>
+</struts-config>
